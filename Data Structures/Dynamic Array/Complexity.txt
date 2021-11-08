@@ -1,0 +1,12 @@
+Static Array:
+    Access: O(1)
+    Search: O(n)
+    Insertion: N/A
+    Appending: N/A
+    Deletion: N/A
+Dynamic Array:
+    Access: O(1)
+    Search: O(n)
+    Insertion: O(n)
+    Appending: O(1)
+    Deletion: O(n)
