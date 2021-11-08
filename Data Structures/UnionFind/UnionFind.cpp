@@ -26,6 +26,11 @@ class UnionFind{
 
     }
 
+    ~UnionFind(){
+        delete[] id;
+        delete[] sz;
+    }
+
     int find(int p){
         int root = p;
         while( root != id[root]){

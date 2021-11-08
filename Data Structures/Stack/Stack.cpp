@@ -21,6 +21,20 @@ class Stack{
         top = nullptr;
         len = 0;
     }
+    ~Stack<T>(){
+        clear();
+    }
+    void clear(){
+        Node<T>* trav = top;
+        while(trav != nullptr) {
+            Node<T>* prev = trav->prev;
+            trav->prev = nullptr;
+            delete trav;
+            trav = prev;
+        }
+        top = trav = nullptr;
+        len = 0;
+    }
 
     bool isEmpty(){ return len == 0;}
     int size(){ return len; }

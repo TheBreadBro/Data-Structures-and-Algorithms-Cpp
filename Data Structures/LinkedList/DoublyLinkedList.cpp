@@ -24,7 +24,9 @@ class DoublyLinkedList{
         tail = nullptr;
         len = 0;
     }
-
+    ~DoublyLinkedList<T>(){
+        clear();
+    }
     void clear(){
         Node<T>* trav = head;
         while(trav != nullptr) {

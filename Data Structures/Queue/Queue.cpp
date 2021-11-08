@@ -22,7 +22,20 @@ class Queue{
         head = tail = nullptr;
         len = 0;
     }
-
+    ~Queue<T>(){
+        clear();
+    }
+    void clear(){
+        Node<T>* trav = head;
+        while(trav != nullptr) {
+            Node<T>* next = trav->next;
+            trav->next = nullptr;
+            delete trav;
+            trav = next;
+        }
+        head = tail = trav = nullptr;
+        len = 0;
+    }
     bool isEmpty(){ return len == 0;}
     int size(){ return len; }
 

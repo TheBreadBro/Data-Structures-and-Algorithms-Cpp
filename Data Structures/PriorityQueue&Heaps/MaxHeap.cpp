@@ -91,6 +91,9 @@ class PriorityQueue{
 
 
     public:
+    ~PriorityQueue(){
+        vector<int>().swap(h);
+    }
     int size(){return h.size();}
     bool isEmpty(){return h.size()==0;}
 
