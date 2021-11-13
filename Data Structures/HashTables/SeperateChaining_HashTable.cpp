@@ -2,8 +2,13 @@
 #include <cstring>
 #include <iostream>
 #include <string>
+#include <math.h>
+#include <vector>
 
 using namespace std;
+const int DEFAULT_CAPACITY = 3;
+const double DEFAULT_LOAD_FACTOR = .75;
+
 
 template <class T>
     struct Node {
@@ -14,6 +19,8 @@ template <class T>
 
 template <class T>
 class DoublyLinkedList{
+    
+
     Node<T>* head;
     Node<T>* tail;    
     int len;
@@ -196,21 +203,112 @@ class DoublyLinkedList{
     }
 };
 
+template<class K, class V>
+class Entry {
+    private:
+    int hash;
+    K key;
+    V value;
 
-int main(){
-    DoublyLinkedList<int> list;
-    list.prepend(34);
-    list.prepend(44);
-    list.append(52);
-    list.append(22);
-    list.print();
-    list.insert(3,33);
-    list.insert(2,51);
-    list.print();
-    cout<<list.pop()<<endl;
-    cout<<list.popHead()<<endl;
-    list.print();
-    list.remove(51);
-    list.print();
-    return 0;
-}
+    public:
+    Entry(K key, V Value){
+        this.key = key;
+        this.value = value;
+        this.hash = key.hashCode();
+    }
+
+    bool equals(Entry<K,V> other){
+        if (hash != other.hash) return false;
+        return key.equals(other.key);
+    }
+
+    string toString(){
+        return key + " => " + value;
+    }
+};
+
+template<class K, class V>
+class HashTableSeperateChaining {
+    private:
+    double maxLoadFactor;
+    int capacity, threshold, size = 0;
+    LinkedList<Entry<K,V>> table;
+
+    int normalizeIndex(int keyHash){
+        return (keyHash &0x7FFFFFFF) % capacity;
+    }
+
+    V bucketInsertEntry(int bucketIndex, Entry<K,V> entry){
+        DoublyLinkedList<Entry<K,V>> bucket = table[bucketIndex];
+        if (bucket == NULL) table[bucketIndex] = bucket = new DoublyLinkedList<>;
+
+        Entry<K, V>
+    }
+    public:
+    HashTableSeperateChaining(){
+        HashTableSeperateChaining(DEFAULT_CAPACITY, DEFAULT_LOAD_FACTOR);
+    }
+    HashTableSeperateChaining(int capacity){
+        HashTableSeperateChaining(capacity, DEFAULT_LOAD_FACTOR);
+    }
+    HashTableSeperateChaining(int capacity, double maxLoadFactor){
+        assert(capacity>0 && maxLoadFactor>0 && !isnan(maxLoadFactor)&& !isinf(maxLoadFactor));
+        this.maxLoadFactor = maxLoadFactor;
+        this.capacity = max(DEFAULT_CAPACITY,capacity);
+        threshold = (int) (this.capacity * maxLoadFactor);
+        table = new DoublyLinkedList;
+    }
+
+    int size() {
+        return size;
+    }
+
+    bool isEmpty(){
+        return size == 0;
+    }
+
+    
+
+    void clear(){
+        table.clear();
+        size = 0;
+    }
+
+    bool containsKey(K key){
+        return hasKey(key);
+    }
+
+    bool hasKey(K key) {
+        int bucketIndex = normalizeIndex(key.hashCode());
+        return bucketSeekEntry(bucketIndex, key) != NULL;
+    }
+
+    V put(K key, V value){
+        return insert(key, value);
+    }
+
+    V add(K key, V value){
+        return insert(key, value);
+    }
+
+    V insert(K key, V value){
+        assert(key!=NULL);
+        Entry<K,V> newEntry = new Entry(key, value);
+        int bucketIndex = normalizeIndex(newEntry.hash);
+        return bucketInsertEntry(bucketIndex, newEntry);
+    }
+    
+    V get(k key) {
+        if (key ==  NULL) return NULL;
+        int bucketIndex = normalizeIndex(key.hashCode());
+        Entry<K,V> newEntry = bucketSeekEntry(bucketIndex, key);
+        if (entry != NULL) return entry.value;
+        return NULL;
+    }
+
+    V remove(K key) {
+        if (key == NULL) return NULL;
+        int bucketIndex = normalizeIndex(key.hashCode());
+        return bucketRemoveEntry(bucketIndex, key);
+    }
+};
