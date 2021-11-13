@@ -18,3 +18,7 @@ This project is for me to deepen my knowledge of Data Structures and Algorithms 
    - [**Find Maximum Subarray**](Algorithms/DivideAndConquer/FindMaximumSubarray.cpp)   
    - [**Merge Sort**](Algorithms/DivideAndConquer/MergeSort.cpp)   
    - [**Naive Square Matrix Multiplication**](Algorithms/DivideAndConquer/NaiveSquareMatrixMult.cpp)(My basis for Strassen's Algorithm not actually Divide and Conquer)   
+   - **Quick Sort**   
+         - [**Quick Sort Lomuto**](Algorithms/DivideAndConquer/QuickSort.cpp)  
+         - [**Quick Sort Hoares**](Algorithms/DivideAndConquer/QuickSortHoares.cpp)   
+   - [**Binary Search**](Algorithms/DivideAndConquer/BinarySearch.cpp)  
