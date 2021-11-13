@@ -5,7 +5,8 @@ using namespace std;
 void merge(int *array, int l, int m, int r) {
    int i, j, k, nl, nr;
    //size of left and right sub-arrays
-   nl = m-l+1; nr = r-m;
+   nl = m-l+1; 
+   nr = r-m;
    int larr[nl], rarr[nr];
    //fill left and right sub-arrays
    for(i = 0; i<nl; i++)
@@ -24,7 +25,7 @@ void merge(int *array, int l, int m, int r) {
    while(i<nl) {       //extra element in left array
       array[k++] = larr[i++];
    }
-   while(j<nr) {     //extra element in right array
+   while(j<nr) {     //extra elements in right array
       array[k++] = rarr[j++];
    }
 }
@@ -32,7 +33,7 @@ void merge(int *array, int l, int m, int r) {
 void mergeSort(int *array, int l, int r) {
    int m;
    if(l < r) {
-      int m = l+(r-l)/2;
+      m = (l+r)/2;
       // Sort first and second arrays
       mergeSort(array, l, m);
       mergeSort(array, m+1, r);

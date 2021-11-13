@@ -40,3 +40,4 @@ int main(){
     squareMatrixMultiply(A,B,res);
     printMatrix(res);
 }
+
